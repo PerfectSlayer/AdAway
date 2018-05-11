@@ -17,9 +17,18 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
 
+addons:
+  sonarcloud:
+    organization: "adaway"
+    token:
+      secure: "JHLmpMwHvvAdCg0v4RPkUyIQixL+q7JVQcVn5s3In6u3MwEZALJLrwr49FJ6U2d6PVuIqzfugezbHY0ckBjjP9Snz7vQOjdscYA5gcjxe5RofEjeI5pZW7lPNCJpP8AVzuJO4mloGC6AHyLOyOJ4HlWTCX/XVyIiclAitB9R8dihynSNiabJXbXK1JAKjSCA6+j0o2ox5wV0KRsXnD78/6mKY6MWclwSMRchGL8T0pf2bRGr8MhPBoOtdePxkaHaryHpN7lm2Zsn7T9PFWGuXgT010c2gOfI2u3KLeXBATnu4VD1Glw5uqVWrBhY7FFk7lYnMHUpNv2drFVzk5nZv6bDRR6PUvzScv5bDB3LV80aUZ1p2vGb0cZXU3kPvec1MSbvQi+jR7X/6ibpha7kXVT7fSyDDgUDX0WdkwyOZxvOzropWxb44VZxkmsWSBAK8W4yGKBahINqiykL2yEachTosHN8p/KOmwxbyUmm76ZXN99OUWxqrIjjBC15uuB2e4kZ3FtYzEbkDOfcmmW1rJA4wNdfFEYi00jsWP9U7D8rT9wej2no/LnoN44LX5FB6zv3lwmLRAe32pzEJ/W1Sm/977oe4BsqeH1B9atEYtHNCLpCmT41kN4D04vyXdyqXwvcP6wzCB77Qwp/8hSbUYIEDTNjqpxmgB0U6O1vnvA="
+
 before_install:
   - rm -fr $HOME/android-ndk-r16b
   - curl -L http://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip -O
   - unzip -oq -d $HOME android-ndk-r16b-linux-x86_64.zip
   - rm android-ndk-r16b-linux-x86_64.zip
   - export ANDROID_NDK_HOME=$HOME/android-ndk-r16b
+
+script:
+  - ./gradlew sonarqube
